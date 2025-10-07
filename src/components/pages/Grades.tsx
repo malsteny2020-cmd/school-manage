@@ -25,7 +25,9 @@ const Grades: React.FC<GradesProps> = ({ students: allStudents, subjects, grades
         }
     }, [subjects, selectedSubject]);
 
-    const studentGrades = useMemo(() => [...new Set(allStudents.map(s => s.grade))].sort((a, b) => a - b), [allStudents]);
+    // FIX: The sort comparison function now explicitly converts values to numbers.
+    // This prevents type errors if `s.grade` is null or a string representation of a number.
+    const studentGrades = useMemo(() => [...new Set(allStudents.map(s => s.grade))].sort((a, b) => Number(a) - Number(b)), [allStudents]);
     
     const classes = useMemo(() => {
         if (selectedGrade === '') return [];

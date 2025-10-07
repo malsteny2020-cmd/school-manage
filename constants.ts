@@ -12,7 +12,8 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'الطلاب', icon: StudentsIcon },
   { label: 'المعلمين', icon: TeachersIcon },
   { label: 'المواد الدراسية', icon: BookOpenIcon },
-  { label: 'الحضور', icon: ClipboardListIcon },
+  // FIX: Updated label for consistency and to match usage in App.tsx.
+  { label: 'الحضور والغياب', icon: ClipboardListIcon },
   { label: 'الدرجات', icon: DocumentCheckIcon },
   { label: 'الإعلانات', icon: MegaphoneIcon },
 ];

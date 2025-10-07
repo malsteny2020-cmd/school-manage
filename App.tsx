@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -70,7 +71,8 @@ const App: React.FC = () => {
                 return <Teachers teachers={data.teachers} setTeachers={(t) => setData({ ...data, teachers: t })} />;
             case 'المواد الدراسية':
                  return <Subjects subjects={data.subjects} setSubjects={(s) => setData({ ...data, subjects: s })} teachers={data.teachers} />;
-            case 'الحضورو الغياب':
+            // FIX: Corrected typo in case label and aligned it with the updated constants.ts for proper navigation.
+            case 'الحضور والغياب':
                 return <Attendance students={data.students} attendance={data.attendance} setAttendance={(a) => setData({ ...data, attendance: a })} />;
             case 'الدرجات':
                 return <Grades students={data.students} subjects={data.subjects} grades={data.grades} setGrades={(g) => setData({ ...data, grades: g })} />;
