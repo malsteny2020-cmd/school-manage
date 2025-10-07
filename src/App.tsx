@@ -14,6 +14,7 @@ import StudentDashboard from './components/pages/StudentDashboard';
 import { NAV_ITEMS } from './constants';
 import { fetchAllData } from './utils/api';
 import type { NavItem, AppData, Student, Admin } from './types';
+import LogoIcon from './components/icons/LogoIcon';
 
 const App: React.FC = () => {
     const [activeItem, setActiveItem] = useState<string>(NAV_ITEMS[0].label);
@@ -84,10 +85,46 @@ const App: React.FC = () => {
     if (loading) {
         return (
             <div className="flex items-center justify-center h-screen bg-background text-white">
-                <div className="text-center">
-                    <p className="text-2xl font-bold">...جاري تحميل البيانات</p>
-                    <p className="text-sm text-text-secondary mt-2">قد يستغرق هذا بعض الوقت. شكراً لصبركم</p>
+                <div className="text-center flex flex-col items-center">
+                    <LogoIcon className="w-24 h-24 text-primary animate-pulse-glow" />
+                    <p className="text-2xl font-bold mt-6 animate-fade-in-slow">...جاري تحميل البيانات</p>
+                    <p className="text-sm text-text-secondary mt-2 animate-fade-in-slower">قد يستغرق هذا بعض الوقت. شكراً لصبركم</p>
                 </div>
+                <style>{`
+                    @keyframes pulse-glow {
+                      0%, 100% {
+                        transform: scale(1);
+                        opacity: 0.8;
+                        filter: drop-shadow(0 0 5px #38bdf8);
+                      }
+                      50% {
+                        transform: scale(1.1);
+                        opacity: 1;
+                        filter: drop-shadow(0 0 15px #38bdf8);
+                      }
+                    }
+                    .animate-pulse-glow {
+                      animation: pulse-glow 2.5s ease-in-out infinite;
+                    }
+    
+                    @keyframes fade-in-slow {
+                      0% { opacity: 0; }
+                      50% { opacity: 0; }
+                      100% { opacity: 1; }
+                    }
+                    .animate-fade-in-slow {
+                      animation: fade-in-slow 1.5s ease-in-out forwards;
+                    }
+    
+                    @keyframes fade-in-slower {
+                        0% { opacity: 0; }
+                        66% { opacity: 0; }
+                        100% { opacity: 1; }
+                    }
+                    .animate-fade-in-slower {
+                        animation: fade-in-slower 2s ease-in-out forwards;
+                    }
+                `}</style>
             </div>
         );
     }
