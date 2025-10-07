@@ -65,9 +65,13 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
                             id="username"
                             type="text"
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            className={inputStyles}
+                            onChange={(e) => {
+                                const value = e.target.value.replace(/[^a-zA-Z0-9_]/g, '');
+                                setUsername(value);
+                            }}
+                            className={`${inputStyles} text-left`}
                             required
+                            placeholder="أحرف وأرقام إنجليزية فقط"
                         />
                     </div>
                     <div className="space-y-2">

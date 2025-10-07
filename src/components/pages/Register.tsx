@@ -27,7 +27,13 @@ const Register: React.FC<RegisterProps> = ({ onBackToLogin }) => {
     const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
+        const { name } = e.target;
+        let { value } = e.target;
+    
+        if (name === 'username') {
+            value = value.replace(/[^a-zA-Z0-9_]/g, '');
+        }
+    
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
@@ -102,7 +108,7 @@ const Register: React.FC<RegisterProps> = ({ onBackToLogin }) => {
                         </div>
                         <div className="space-y-2">
                             <label className="block text-sm font-medium text-text-secondary">اسم المستخدم:</label>
-                            <input name="username" type="text" value={formData.username} onChange={handleChange} className={inputStyles} required />
+                            <input name="username" type="text" value={formData.username} onChange={handleChange} className={`${inputStyles} text-left`} required placeholder="أحرف وأرقام إنجليزية فقط" />
                         </div>
                         <div className="space-y-2">
                             <label className="block text-sm font-medium text-text-secondary">كلمة المرور:</label>
