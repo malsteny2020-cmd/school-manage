@@ -3,6 +3,7 @@ import { writeData } from '../../utils/api';
 import LogoIcon from '../icons/LogoIcon';
 import EyeIcon from '../icons/EyeIcon';
 import EyeSlashIcon from '../icons/EyeSlashIcon';
+import SpinnerIcon from '../icons/SpinnerIcon';
 
 
 interface RegisterProps {
@@ -166,9 +167,16 @@ const Register: React.FC<RegisterProps> = ({ onBackToLogin }) => {
                     <button
                         type="submit"
                         disabled={isRegistering}
-                        className="w-full bg-accent text-white py-3 rounded-md hover:bg-indigo-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base font-semibold mt-6"
+                        className="w-full bg-accent text-white py-3 rounded-md hover:bg-indigo-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base font-semibold mt-6 flex items-center justify-center"
                     >
-                        {isRegistering ? '...جاري التسجيل' : 'إنشاء الحساب'}
+                        {isRegistering ? (
+                            <>
+                                <SpinnerIcon className="w-5 h-5 ml-3" />
+                                <span>...جاري التسجيل</span>
+                            </>
+                        ) : (
+                            'إنشاء الحساب'
+                        )}
                     </button>
                 </form>
 

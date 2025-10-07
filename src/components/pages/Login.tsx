@@ -4,6 +4,7 @@ import { writeData } from '../../utils/api';
 import LogoIcon from '../icons/LogoIcon';
 import EyeIcon from '../icons/EyeIcon';
 import EyeSlashIcon from '../icons/EyeSlashIcon';
+import SpinnerIcon from '../icons/SpinnerIcon';
 
 interface LoginProps {
   onLogin: (user: { type: 'admin' | 'student'; data: Admin | Student }) => void;
@@ -99,9 +100,16 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToRegister }) => {
                     <button
                         type="submit"
                         disabled={isLoggingIn}
-                        className="w-full bg-accent text-white py-3 rounded-md hover:bg-indigo-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base font-semibold"
+                        className="w-full bg-accent text-white py-3 rounded-md hover:bg-indigo-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base font-semibold flex items-center justify-center"
                     >
-                        {isLoggingIn ? '...جاري التحقق' : 'تسجيل الدخول'}
+                        {isLoggingIn ? (
+                            <>
+                                <SpinnerIcon className="w-5 h-5 ml-3" />
+                                <span>...جاري التحقق</span>
+                            </>
+                        ) : (
+                            'تسجيل الدخول'
+                        )}
                     </button>
                 </form>
 
